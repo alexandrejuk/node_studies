@@ -1,9 +1,10 @@
 const clients = require('../models/clients');
 
-let Creation = {
-    name: 'Alexandre',
-    phone: 1234567
-}
+exports.list = function(req, resp, next) {
+    clients.find().then(foundClients => {
 
-let createClient = new clients(Creation);
-createClient.save();
+        resp.status(200)
+        .json(foundClients);
+
+    })
+}
