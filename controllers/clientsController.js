@@ -5,9 +5,7 @@ let creationClient = new clients ({
     name: "Alexandre dos Santos Soares",
     phone: 98765421
 });
-creationClient.save(function(){
-    console.log(creationClient)
-})
+creationClient.save();
 
 
 exports.getAllClients = (req, res, next) =>{
