@@ -15,6 +15,8 @@ npm start
  get localhost:3003/api/clients 
  get localhost:3003/api/clients/:id 
  delete localhost:3003/api/clients:id
+ post localhost:3003/api/clients 
+ put localhost:3003/api/clients:id
 ```
 
 ### Testing
