@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/alexandrejuk/node_studies.svg?branch=master)](https://travis-ci.org/alexandrejuk/node_studies
+
 # Node Studies
 
 Project using MEAN Stack.
