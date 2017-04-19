@@ -6,8 +6,7 @@
   "main": "app.js",
   "scripts": {
     "test": "mocha --timeout 10000",
-    "start": "node app.js",
-    "coverage": "istanbul cover _mocha"
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
