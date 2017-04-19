@@ -4,16 +4,13 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3003;
 const clientRoute = require('./routes/clientsRoute');
+const morgan = require('morgan');
 
-
-
-
-app.use(bodyParser.json());
+app.use(morgan('dev'));
 app.use(bodyParser.json());                                     
 app.use(bodyParser.urlencoded({extended: true}));               
 app.use(bodyParser.text());                                    
 app.use(bodyParser.json({ type: 'application/json'})); 
-app.get("/", (req, res) => res.json({message: "Welcome to our clients!"}))
 app.use("/api", clientRoute);
 
 app.listen(port, ()=>{
