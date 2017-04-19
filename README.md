@@ -1,8 +1,16 @@
-## Node Studies
+# Node Studies
 
 Project using MEAN Stack.
 
-### Installation and inicialization
+
+## Table of Contents
+
+**[Installation Instructions](#installation-instructions)** <br/>
+**[Endpoints](#endpoints)**  <br/>
+**[Testing](#testing)** <br/>
+
+
+## Installation Instructions
 
 ``` 
 npm install
@@ -13,16 +21,13 @@ npm start
 
 ```
  get localhost:3003/api/clients 
- get localhost:3003/api/clients/:id 
- delete localhost:3003/api/clients:id
  post localhost:3003/api/clients 
+ get localhost:3003/api/clients/:id 
+ delete localhost:3003/api/clients:id 
  put localhost:3003/api/clients:id
 ```
 
 ### Testing
 ```
-```
-
-### Features
-```
+npm test
 ```

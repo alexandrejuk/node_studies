@@ -1,78 +1,51 @@
-const clients = require('../models/clients');
+const mongoose = require('mongoose');
+const Clients = require('../models/clients');
 
 
-let creationClient = new clients ({
-    name: "Alexandre dos Santos Soares",
-    phone: 98765421
-});
-creationClient.save();
+function getAllClients(req, res, next) {
+    let query = Clients.find({});
+    query.exec((err, clients) =>{
+        if(err) res.send(err);
 
-
-exports.getAllClients = (req, res, next) =>{
-    clients.find().then(foundClients => {
-        res.status(200).json(foundClients);
-    }).catch((err) =>{
-       res.status(500).json({
-           message: err,
-       });
-   });
- }
-
-exports.getOneClient = (req, res, next) => {
-    console.log(req.params.id);
-    clients.findById(req.params.id).then(foundOneClients => {
-        res.status(200).json(foundOneClients);
-    }).catch((err) =>{
-       res.status(500).json({
-           message: err,
-       });
-   });
- }
-
-exports.deleteOneClient =  (req, res, next) =>{
-    console.log(req.params.id);
-    clients.remove({_id: req.params.id}).then(deleteOneClients => {
-        resp.status(200).json({
-            message: 'Client was removed!', deleteOneClients
-        });
-    }).catch((err) =>{
-       res.status(500).json({
-           message: err,
-       });
-   });
- }
-
-
-exports.postClients = (req, res, next) => {
-    console.log(req.body);
+        res.json(clients);
+    });
 }
 
-exports.postClients = (req, res, next) => {
-    console.log(req.body);
-   const clientModel = new clients(req.body);
-   clientModel.save().then((newClient) =>{
-       res.status(200).json({
-           success: true,
-           data: newClient,
-           message: 'Customer successfully added '
-       });
-   }).catch((err) =>{
-       res.status(500).json({
-           message: err,
-       });
-   });
- }
+function postClient(req, res, next) {
+    const newClient = new Clients(req.body);
+    newClient.save((err, client) =>{
+        if(err){
+            res.send(err);
+        }else {
+            res.json({
+                message: "Client successfully added!", client
+            });
+        }
+    });
+}
 
-exports.putOnClient = (req, res, next) =>{
-    console.log(req.body);
-    clients.findByIdAndUpdate(req.params.id, req.body).then(putClient =>{
-        res.status(200).json({    success: true,
-           data: putClient,
-           message:'Customer successfully change '
-       });
-    }).catch((err) =>{
-       res.status(500).json({
-           message: err,
-       });
-   });
- }
+function getClientId (req, res, next) {
+    Clients.findById(req.params.id, (err, client) =>{
+        if(err) res.send(err);
+
+        res.json(client);
+    });
+}
+
+function deleteClient(req, res) {
+    Clients.remove({_id : req.params.id}, (err, result) => {
+        res.json({ message: "Client successfully deleted!", result });
+    });
+}
+
+function updateClient(req, res) {
+    Clients.findById({_id: req.params.id}, (err, client) => {
+        if(err) res.send(err);
+        Object.assign(client, req.body).save((err, client) => {
+            if(err) res.send(err);
+            res.json({ message: 'Client updated!', client });
+        }); 
+    });
+}
+
+module.exports = { getAllClients, postClient, getClientId, deleteClient, updateClient};

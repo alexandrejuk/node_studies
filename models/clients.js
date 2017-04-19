@@ -9,4 +9,11 @@ const clientSchema = new Schema({
     versionKey: false 
 });
 
+clientSchema.pre('save', next =>{
+    now = new Date();
+    if(!this.createAt){
+    this.createAt = now;
+}
+next();
+})
 module.exports = _db.model('clients', clientSchema);
