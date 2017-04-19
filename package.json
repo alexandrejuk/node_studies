@@ -6,12 +6,14 @@
   "main": "app.js",
   "scripts": {
     "test": "mocha --timeout 10000",
-    "start": "node app.js"
-     },
+    "start": "node app.js",
+    "coverage": "istanbul cover _mocha"
+  },
   "dependencies": {
     "body-parser": "^1.17.1",
     "config": "^1.25.1",
     "express": "^4.15.2",
+    "istanbul": "^0.4.5",
     "mongoose": "^4.9.4",
     "morgan": "^1.8.1"
   },
